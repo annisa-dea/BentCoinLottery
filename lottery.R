@@ -9,15 +9,19 @@
 
 library(stats)
 
-arr <- array(0,10)
-for (i in 1:10){
-  arr[i] <- if (runif(1) < 0.1) 1 else 0
+flipNTimes <- function(numOfFlips, coinBias){
+  coinNumber <- array(0, numOfFlips)
+  for (i in 1:numOfFlips){
+    coinNumber[i] <- if (runif(1) < coinBias) 
+      1 #heads
+    else 0 #tails
+  }
+  print(coinNumber)
 }
 
-for (j in 1:100){
-  arr <- array(0,10)
-  for (i in 1:10){
-    arr[i] <- if (runif(1) < 0.1) 1 else 0
+
+repeatCoinFlipExpt <- function(numOfExpts, numOfFlips, coinBias){
+  for (j in 1:numOfExpts){
+    flipNTimes(numOfFlips, coinBias)
   }
-  print(arr)
 }
